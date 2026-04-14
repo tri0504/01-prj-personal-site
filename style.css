@@ -187,7 +187,8 @@ nav {
 
 /* Style for the profile photo */
 .bio-image img {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   height: 300px;
   object-fit: cover; /* Makes the image fit nicely */
   border: 3px solid #00ffff;
@@ -199,7 +200,7 @@ nav {
 
 .bio-text {
   flex: 2;
-  min-width: 300px;
+  min-width: 0;
 }
 
 .bio-text p {
@@ -225,7 +226,8 @@ nav {
   background-color: #0f0f1e;
   border: 2px solid #ff00ff;
   padding: 30px;
-  width: 250px;
+  width: 100%;
+  max-width: 250px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -258,7 +260,13 @@ nav {
 /* ----- Projects Section ----- */
 #projects {
   padding: 100px 0;
-  background-color: #0f0f1e;
+  /* Stronger layered background so this section stands out on the page */
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.14), transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.14), transparent 45%),
+    linear-gradient(135deg, #11112a 0%, #1e1a3b 50%, #11112a 100%);
+  border-top: 3px solid #ff00ff;
+  border-bottom: 3px solid #00ffff;
 }
 
 .projects-grid {
@@ -271,7 +279,8 @@ nav {
 .project-card {
   background-color: #1a1a2e;
   border: 2px solid #00ffff;
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
   overflow: hidden;
   transition: transform 0.3s;
 }
@@ -372,6 +381,15 @@ footer p {
 
 /* ----- Responsive Design for Mobile ----- */
 @media (max-width: 768px) {
+  nav {
+    position: static; /* Let nav take normal space on small screens */
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .hero-title {
     font-size: 36px;
   }
@@ -385,6 +403,8 @@ footer p {
   }
   
   .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 15px;
   }
   
@@ -394,5 +414,50 @@ footer p {
   
   .bio-content {
     flex-direction: column;
+  }
+
+  #hero {
+    margin-top: 0; /* No fixed nav offset needed on mobile */
+    min-height: 80vh;
+  }
+
+  .project-image {
+    font-size: 18px;
+    text-align: center;
+    padding: 0 10px;
+  }
+}
+
+/* Extra-small screens (phones around 320px wide) */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+    letter-spacing: 2px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .hero-button,
+  .contact-button {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+
+  .project-info {
+    padding: 20px;
   }
 }
